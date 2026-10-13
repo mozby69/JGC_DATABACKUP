@@ -1,52 +1,58 @@
 "use client";
 
-import { useAuth } from "@/modules/authentication/hooks/useAuth";
+import { usePathname } from "next/navigation";
+import {
+  Bell,
+  Plus,
+} from "lucide-react";
+
+import { navigation } from "@/config/navigation.config";
 
 export default function Header() {
-    const { user, logout } = useAuth();
+  const pathname = usePathname();
 
-    return (
-        <header className="flex h-16 items-center justify-between border-b bg-gray-700 px-6">
-            {/* Left */}
-            <div>
-                <h1 className="text-lg font-semibold text-gray-100">
-                    Monorepo WorkSpace
-                </h1>
-            </div>
+  const currentPage = navigation.find(
+    (item) =>
+      pathname === item.href ||
+      (
+        item.href !== "/" &&
+        pathname.startsWith(`${item.href}/`)
+      )
+  );
 
-            {/* Right */}
-            <div className="flex items-center gap-4">
-                {user && (
-                    <div className="text-right">
-                        <p className="text-sm font-medium text-gray-800">
-                            {user.name}
-                        </p>
+  const pageTitle = currentPage?.title ?? "Overview";
 
-                        <p className="text-xs text-gray-500">
-                            {user.username}
-                        </p>
-                    </div>
-                )}
+  return (
+    <header className="flex h-19.75 shrink-0 items-center justify-between border-b border-[#E0E2DC] bg-[#F8F9F6] px-8">
+      {/* Left */}
+      <div className="flex flex-col gap-0.5">
+        <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-[#929A93]">
+          Admin Workspace
+        </p>
 
-                <button
-                    type="button"
-                    onClick={logout}
-                    className="
-                        rounded-md
-                        border
-                        border-gray-300
-                        px-3
-                        py-2
-                        text-sm
-                        font-medium
-                        text-gray-700
-                        transition
-                        hover:bg-gray-100
-                    "
-                >
-                    Logout
-                </button>
-            </div>
-        </header>
-    );
+        <h1 className="text-[17px] font-semibold leading-tight tracking-tight text-[#26342F]">
+          {pageTitle}
+        </h1>
+      </div>
+
+      {/* Right */}
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          aria-label="Notifications"
+          className="relative flex h-9 w-9 items-center justify-center rounded-[10px] border border-[#DCE0D9] bg-transparent text-[#68776D] transition-colors hover:bg-[#ECEFE9]"
+        >
+          <Bell size={17} strokeWidth={1.7} />
+        </button>
+
+        {/* <button
+          type="button"
+          className="flex h-9 items-center gap-2 rounded-[10px] bg-[#26342F] px-4 text-[12px] font-medium text-white transition-colors hover:bg-[#374B40]"
+        >
+          <Plus size={15} strokeWidth={1.8} />
+          New Record
+        </button> */}
+      </div>
+    </header>
+  );
 }

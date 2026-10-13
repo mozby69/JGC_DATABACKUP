@@ -3,7 +3,9 @@ import {
     Users,
     Truck,
     ClipboardList,
-    Settings
+    Settings,
+    BookText,
+    Library
 } from "lucide-react";
 
 import { NavigationItem } from "@/types/navigation.types";
@@ -27,6 +29,30 @@ export const navigation: NavigationItem[] = [
         href: ROUTES.UNAUTHORIZED, // temporary
         icon: Users,
         roles: ["USER"],
+    },
+     {
+        title: "Dashboard",
+        href: ROUTES.SSP.DASHBOARD, // temporary
+        icon: LayoutDashboard,
+        roles: ["BRANCH","ADMIN"],
+    },
+    {
+        title: "Pensioner List",
+        href: ROUTES.SSP.PENSIONER, // temporary
+        icon: Users,
+        roles: ["BRANCH","ADMIN"],
+    },
+    {
+        title: "Computation Slip",
+        href: ROUTES.SSP.COMPUTATION_SLIP, // temporary
+        icon: BookText,
+        roles: ["BRANCH","ADMIN"],
+    },
+     {
+        title: "Collection",
+        href: ROUTES.SSP.COLLECTION, // temporary
+        icon: Library,
+        roles: ["BRANCH","ADMIN"],
     },
     {
         title: "Settings",
