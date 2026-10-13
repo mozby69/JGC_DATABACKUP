@@ -46,7 +46,21 @@ export default function Sidebar() {
     .toUpperCase() || "U";
 
   return (
-    <aside className="flex h-screen w-[206px] shrink-0 flex-col border-r border-[#DDDED8] bg-[#EEEFEA]">
+   <aside
+  className="
+    fixed
+    inset-y-0
+    left-0
+    z-40
+    flex
+    h-dvh
+    w-51.5
+    flex-col
+    border-r
+    border-[#DDDED8]
+    bg-[#EEEFEA]
+  "
+>
       {/* Workspace branding */}
       <div className="flex h-[82px] items-center gap-3 px-5">
         <div className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-[#26342F] text-white">

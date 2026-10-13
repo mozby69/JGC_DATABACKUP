@@ -158,7 +158,7 @@ export default function PensionerList() {
   };
 
   return (
-    <div className="min-h-full bg-[#F8F9F6] p-8">
+    <div className="min-h-full bg-[#F8F9F6] p-4">
       {/* Page heading */}
       <div className="mb-7 flex flex-wrap items-center justify-between gap-4">
         <div>
@@ -448,7 +448,7 @@ export default function PensionerList() {
 
 
 
-               <Modal onClose={closeModal} isOpen={userModal.isOpen} title={"Add Pensioner "} size="lg">
+               <Modal onClose={closeModal} isOpen={userModal.isOpen} title={"Add Pensioner "} size="xl">
                 <div>
                     <AddPensionerModal />
        
