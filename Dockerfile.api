@@ -29,7 +29,7 @@ RUN pnpm deploy --legacy --filter api --prod /prod/api
 FROM node:24-bookworm-slim AS runner
 
 ENV NODE_ENV=production
-ENV PORT=500
+ENV PORT=5000
 ENV PATH="/app/node_modules/.bin:${PATH}"
 
 WORKDIR /app
