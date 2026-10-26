@@ -1,11 +1,11 @@
 import {
     LayoutDashboard,
     Users,
-    Truck,
     ClipboardList,
     Settings,
-    BookText,
-    Library
+    SquareMenu,
+    DatabaseBackup,
+
 } from "lucide-react";
 
 import { NavigationItem } from "@/types/navigation.types";
@@ -30,34 +30,30 @@ export const navigation: NavigationItem[] = [
         icon: Users,
         roles: ["USER"],
     },
-     {
+    // {
+    //     title: "Settings",
+    //     href: ROUTES.UNAUTHORIZED, // temporary
+    //     icon: Settings,
+    //     roles: ["SUPER_ADMIN"],
+    // },
+
+
+    {
         title: "Dashboard",
-        href: ROUTES.SSP.DASHBOARD, // temporary
+        href: ROUTES.SUPER_ADMIN.DASHBOARD, // temporary
         icon: LayoutDashboard,
-        roles: ["BRANCH","ADMIN"],
+        roles: ["SUPER_ADMIN"],
     },
     {
-        title: "Pensioner List",
-        href: ROUTES.SSP.PENSIONER, // temporary
-        icon: Users,
-        roles: ["BRANCH","ADMIN"],
+        title: "Branches",
+        href: ROUTES.SUPER_ADMIN.BRANCHES, // temporary
+        icon: SquareMenu,
+        roles: ["SUPER_ADMIN"],
     },
     {
-        title: "Computation Slip",
-        href: ROUTES.SSP.COMPUTATION_SLIP, // temporary
-        icon: BookText,
-        roles: ["BRANCH","ADMIN"],
-    },
-     {
-        title: "Collection",
-        href: ROUTES.SSP.COLLECTION, // temporary
-        icon: Library,
-        roles: ["BRANCH","ADMIN"],
-    },
-    {
-        title: "Settings",
-        href: ROUTES.UNAUTHORIZED, // temporary
-        icon: Settings,
+        title: "Backup",
+        href: ROUTES.SUPER_ADMIN.BACKUP, // temporary
+        icon: DatabaseBackup,
         roles: ["SUPER_ADMIN"],
     },
 ];

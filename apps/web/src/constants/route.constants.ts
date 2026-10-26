@@ -7,10 +7,9 @@ export const ROUTES = {
         DASHBOARD: "/admin/dashboard",
         ACCESS_CONTROL: "/admin/access-control",
     },
-    SSP: {
-        DASHBOARD: "/ssp/dashboard",
-        PENSIONER:"/ssp/pensionerMasterList",
-        COMPUTATION_SLIP: "/ssp/computationSlip",
-        COLLECTION:"/ssp/collection",
-    },
+    SUPER_ADMIN:{
+        DASHBOARD:"/superadmin/dashboard",
+        BRANCHES: "/superadmin/branches",
+        BACKUP: "/superadmin/backup",
+    }
 } as const;

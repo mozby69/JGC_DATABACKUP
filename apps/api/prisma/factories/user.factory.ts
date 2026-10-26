@@ -21,7 +21,7 @@ export async function factoryUser() {
     name: "Trial User",
     username: "admin1234",
     password: "12345678",
-    roleIds: [adminRole.id],
+    // roleIds: [adminRole.id],
   });
 
   console.log(`✅ Factory user created: ${user.username}`);

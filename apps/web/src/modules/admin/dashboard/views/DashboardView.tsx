@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { Skeleton } from "boneyard-js/react";
 import "@/bones/registry";
@@ -8,47 +9,49 @@ import { useDashboard } from "../hooks/useDashboard";
 import { dashboardFixtureData } from "../fixtures/dashboardFixtures";
 
 export default function DashboardView() {
-    const { data, isLoading: dashboardLoading } = useDashboard();
-    const dashboardData = data?.data;
+  const { data, isLoading: dashboardLoading } = useDashboard();
 
-    // Development only: keep skeleton visible longer
-    const [showSkeleton, setShowSkeleton] = useState(true);
+  const dashboardData = data?.data;
 
-    useEffect(() => {
-        if (dashboardLoading) {
-            setShowSkeleton(true);
-            return;
-        }
+  // Development only: keep skeleton visible longer
+  const [delayComplete, setDelayComplete] = useState(false);
 
-        const timer = setTimeout(() => {
-            setShowSkeleton(false);
-        }, 3000);
+  useEffect(() => {
+    if (dashboardLoading) {
+      return;
+    }
 
-        return () => clearTimeout(timer);
-    }, [dashboardLoading]);
+    const timer = setTimeout(() => {
+      setDelayComplete(true);
+    }, 500);
 
-    return (
-        <Skeleton
-            name="admin-dashboard"
-            loading={showSkeleton} // Development only
-            // loading={dashboardLoading} // Actual Production use
-            fixture={
-                <DashboardContent
-                    data={dashboardFixtureData}
-                />
-            }
-            fallback={
-                <div className="p-6">
-                    Loading dashboard...
-                </div>
-            }
-            transition
-        >
-            {dashboardData && (
-                <DashboardContent
-                    data={dashboardData}
-                />
-            )}
-        </Skeleton>
-    );
+    return () => clearTimeout(timer);
+  }, [dashboardLoading]);
+
+  // Derived state instead of synchronously updating state in an effect
+  const showSkeleton = dashboardLoading || !delayComplete;
+
+  return (
+    <Skeleton
+      name="admin-dashboard"
+      loading={showSkeleton}
+      fixture={
+        <DashboardContent
+          data={dashboardFixtureData}
+        />
+      }
+      fallback={
+        <div className="p-6">
+          Loading dashboard...
+        </div>
+      }
+      transition
+    >
+      {dashboardData && (
+        <DashboardContent
+          data={dashboardData}
+        />
+      )}
+    </Skeleton>
+  );
 }

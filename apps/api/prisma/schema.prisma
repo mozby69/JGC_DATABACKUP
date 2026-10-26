@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
 }
 
 model User {
@@ -79,4 +79,27 @@ model RolePermission {
 
   @@id([roleId, permissionId])
   @@map("role_permissions")
+}
+
+
+
+model Branch {
+  id Int @id @default(autoincrement())
+
+  branchCode String @unique @db.VarChar(30)
+  branchName String @db.VarChar(150)
+
+  ipAddress String @db.VarChar(255)
+  sshPort   Int    @default(22)
+  sshUsername String @db.VarChar(100)
+
+  backupFolder String @db.VarChar(500)
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isActive])
+  @@map("branches")
 }
