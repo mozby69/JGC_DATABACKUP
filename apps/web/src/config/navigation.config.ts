@@ -2,7 +2,6 @@ import {
     LayoutDashboard,
     Users,
     ClipboardList,
-    Settings,
     SquareMenu,
     DatabaseBackup,
 

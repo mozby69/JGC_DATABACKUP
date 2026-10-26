@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Branch, CreateBranchInput, UpdateBranchInput } from "@repo/shared";
 
-import DataTable, { DataTableProps } from "@/components/common/Datatable"; 
+import DataTable from "@/components/common/Datatable"; 
 import { branchColumns } from "../components/column";
 import AddBranchModal from "../components/modal/addBranchModal";
 import { useCreateBranch, useGetBranches, useUpdateBranch } from "../hooks/useBranch";
