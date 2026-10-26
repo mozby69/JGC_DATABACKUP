@@ -2,6 +2,8 @@ import { prisma } from "../../src/lib/database/prisma";
 
 export async function seedRoles() {
     const roles = [
+        { name: "SUPER_ADMIN", permissions: [] },
+        { name: "USER", permissions: [] },
         {
             name: "ADMIN",
             permissions: [

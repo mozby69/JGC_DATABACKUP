@@ -5,7 +5,10 @@ import dashboardRoutes from "@/modules/admin/dashboard/dashboard.routes";
 import { authenticate } from '@/middleware/authenticate.middleware';
 import branchRoutes from "../modules/superadmin/branches/branch.routes";
 
+import backupRoutes from "../modules/backup/backup.routes";
+
 const router = Router();
+router.use("/backups", backupRoutes);
 
 router.use("/auth", authRoutes);
 

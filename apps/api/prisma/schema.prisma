@@ -21,6 +21,10 @@ model User {
 
   isActive Boolean @default(true) @map("is_active")
 
+  branchId Int?
+  branch Branch? @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  backups Backup[]
+
   roles UserRole[]
 
   createdAt DateTime @default(now()) @map("created_at")
@@ -84,6 +88,8 @@ model RolePermission {
 
 
 model Branch {
+  users User[]
+  backups Backup[]
   id Int @id @default(autoincrement())
 
   branchCode String @unique @db.VarChar(30)
@@ -102,4 +108,45 @@ model Branch {
 
   @@index([isActive])
   @@map("branches")
+}
+
+enum BackupStatus {
+  UPLOADING
+  COMPLETE
+  FAILED
+}
+
+model Backup {
+  id String @id @default(uuid()) @db.VarChar(36)
+  backupNo String @unique @db.VarChar(50)
+  branchId Int
+  uploadedById Int
+  backupDate DateTime @db.Date
+  subject String @db.VarChar(500)
+  status BackupStatus @default(UPLOADING)
+  // Connection snapshot keeps historical backups reachable after branch edits.
+  storageHost String @db.VarChar(255)
+  storagePort Int
+  storageUsername String @db.VarChar(100)
+  storageKeyName String @db.VarChar(100)
+  remoteDirectory String @db.VarChar(1000)
+  branch Branch @relation(fields: [branchId], references: [id], onDelete: Restrict)
+  uploadedBy User @relation(fields: [uploadedById], references: [id], onDelete: Restrict)
+  files BackupFile[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([branchId, backupDate])
+  @@index([uploadedById, createdAt])
+  @@map("backups")
+}
+
+model BackupFile {
+  id String @id @default(uuid()) @db.VarChar(36)
+  backupId String @db.VarChar(36)
+  originalName String @db.VarChar(255)
+  storedName String @db.VarChar(100)
+  size BigInt
+  backup Backup @relation(fields: [backupId], references: [id], onDelete: Cascade)
+  @@index([backupId])
+  @@map("backup_files")
 }

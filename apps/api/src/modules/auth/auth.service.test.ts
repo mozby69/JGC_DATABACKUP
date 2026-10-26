@@ -118,8 +118,8 @@ describe("loginUser", () => {
     it("should return token and authenticated user when credentials are valid", async () => {
         const user = {
             id: 1,
-            name: "System",
-            username: "Admin",
+            name: "John Doe",
+            username: "john",
             password: "hashed-password",
             isActive: true,
             roles: [

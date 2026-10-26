@@ -65,7 +65,7 @@ export function AuthProvider({
                 return;
             }
 
-            router.replace("/");
+            router.replace("/user/backup");
         },
         [queryClient, router]
     );

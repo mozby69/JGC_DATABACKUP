@@ -56,7 +56,9 @@ export const ModelName = {
   UserRole: 'UserRole',
   Permission: 'Permission',
   RolePermission: 'RolePermission',
-  Branch: 'Branch'
+  Branch: 'Branch',
+  Backup: 'Backup',
+  BackupFile: 'BackupFile'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -82,6 +84,7 @@ export const UserScalarFieldEnum = {
   email: 'email',
   password: 'password',
   isActive: 'isActive',
+  branchId: 'branchId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -145,6 +148,37 @@ export const BranchScalarFieldEnum = {
 export type BranchScalarFieldEnum = (typeof BranchScalarFieldEnum)[keyof typeof BranchScalarFieldEnum]
 
 
+export const BackupScalarFieldEnum = {
+  id: 'id',
+  backupNo: 'backupNo',
+  branchId: 'branchId',
+  uploadedById: 'uploadedById',
+  backupDate: 'backupDate',
+  subject: 'subject',
+  status: 'status',
+  storageHost: 'storageHost',
+  storagePort: 'storagePort',
+  storageUsername: 'storageUsername',
+  storageKeyName: 'storageKeyName',
+  remoteDirectory: 'remoteDirectory',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BackupScalarFieldEnum = (typeof BackupScalarFieldEnum)[keyof typeof BackupScalarFieldEnum]
+
+
+export const BackupFileScalarFieldEnum = {
+  id: 'id',
+  backupId: 'backupId',
+  originalName: 'originalName',
+  storedName: 'storedName',
+  size: 'size'
+} as const
+
+export type BackupFileScalarFieldEnum = (typeof BackupFileScalarFieldEnum)[keyof typeof BackupFileScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -197,4 +231,27 @@ export const BranchOrderByRelevanceFieldEnum = {
 } as const
 
 export type BranchOrderByRelevanceFieldEnum = (typeof BranchOrderByRelevanceFieldEnum)[keyof typeof BranchOrderByRelevanceFieldEnum]
+
+
+export const BackupOrderByRelevanceFieldEnum = {
+  id: 'id',
+  backupNo: 'backupNo',
+  subject: 'subject',
+  storageHost: 'storageHost',
+  storageUsername: 'storageUsername',
+  storageKeyName: 'storageKeyName',
+  remoteDirectory: 'remoteDirectory'
+} as const
+
+export type BackupOrderByRelevanceFieldEnum = (typeof BackupOrderByRelevanceFieldEnum)[keyof typeof BackupOrderByRelevanceFieldEnum]
+
+
+export const BackupFileOrderByRelevanceFieldEnum = {
+  id: 'id',
+  backupId: 'backupId',
+  originalName: 'originalName',
+  storedName: 'storedName'
+} as const
+
+export type BackupFileOrderByRelevanceFieldEnum = (typeof BackupFileOrderByRelevanceFieldEnum)[keyof typeof BackupFileOrderByRelevanceFieldEnum]
 

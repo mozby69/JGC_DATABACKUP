@@ -4456,3 +4456,7 @@ Reusable Full-Stack Monorepo
 # License
 
 Add the appropriate license before public distribution.
+
+## Daily SFTP backups
+
+See [daily-backups.md](docs/daily-backups.md) for the user upload flow, superadmin listings and assignments, database migration, and manual SSH key setup.

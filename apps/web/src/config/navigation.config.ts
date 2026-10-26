@@ -25,9 +25,9 @@ export const navigation: NavigationItem[] = [
         roles: ["ADMIN"],
     },
     {
-        title: "Users",
-        href: ROUTES.UNAUTHORIZED, // temporary
-        icon: Users,
+        title: "Daily Backup",
+        href: "/user/backup",
+        icon: DatabaseBackup,
         roles: ["USER"],
     },
     // {

@@ -5,14 +5,15 @@ function getConnectionConfig(branch: {
   ipAddress: string;
   sshPort: number;
   sshUsername: string;
+  branchCode: string;
 }) {
   return {
     host: branch.ipAddress,
     port: branch.sshPort,
     username: branch.sshUsername,
 
-    // Temporary: use the working VM key.
-    keyName: process.env.SFTP_TEST_KEY_NAME ?? "branch_vm",
+    // Private keys are provisioned manually, one file per branch code.
+    keyName: branch.branchCode,
   };
 }
 

@@ -6,7 +6,7 @@ import { testBranchConnectionController, getBranchFilesController } from "./conn
 
 const router = Router();
 
-router.use(authenticate);
+router.use(authenticate, authorize({ roles: ["SUPER_ADMIN"] }));
 
 router.get("/", branchController.getBranchesController);
 router.get("/:id", branchController.getBranchByIdController);
