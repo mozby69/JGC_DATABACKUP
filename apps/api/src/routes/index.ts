@@ -3,7 +3,9 @@ import authRoutes from "../modules/auth/auth.routes";
 import accessControlRoutes from "@/modules/admin/access-control/access-control.routes";
 import dashboardRoutes from "@/modules/admin/dashboard/dashboard.routes";
 import { authenticate } from '@/middleware/authenticate.middleware';
-import branchRoutes from "../modules/superadmin/branches/branch.routes";
+import superadminRoutes from "../modules/superadmin/branches/branch.routes";
+import branchRoutes from "../modules/branch/addbackup/addbackup.routes";
+
 
 const router = Router();
 
@@ -20,6 +22,7 @@ router.use(
     authenticate,
     dashboardRoutes
 );
-router.use("/superadmin/branches", authenticate, branchRoutes);
+router.use("/superadmin/branches", authenticate, superadminRoutes);
+router.use("/branch/backups",authenticate,branchRoutes);
 
 export default router;

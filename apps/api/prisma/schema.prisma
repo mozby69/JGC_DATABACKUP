@@ -22,6 +22,8 @@ model User {
   isActive Boolean @default(true) @map("is_active")
 
   roles UserRole[]
+  branchId Int?
+  branch   Branch? @relation(fields: [branchId], references: [id])
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -90,16 +92,55 @@ model Branch {
   branchName String @db.VarChar(150)
 
   ipAddress String @db.VarChar(255)
-  sshPort   Int    @default(22)
+  sshPort Int @default(22)
   sshUsername String @db.VarChar(100)
 
   backupFolder String @db.VarChar(500)
 
   isActive Boolean @default(true)
 
+
+  users User[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([isActive])
   @@map("branches")
+}
+
+
+enum BackupStatus {
+  PENDING
+  RUNNING
+  COMPLETED
+  FAILED
+}
+
+model Backup {
+  id Int @id @default(autoincrement())
+
+  backupNo   String?   @unique @db.VarChar(30)
+  backupDate DateTime? @db.Date
+  subject    String?   @db.Text
+
+  branchId Int
+  userId   Int
+
+  fileName   String @db.VarChar(255)
+  remotePath String @db.VarChar(1000)
+  localPath  String? @db.VarChar(1000)
+
+  fileSize BigInt?
+  status   BackupStatus @default(PENDING)
+
+  errorMessage String? @db.Text
+
+  createdAt   DateTime  @default(now())
+  startedAt   DateTime?
+  completedAt DateTime?
+
+  @@index([branchId, createdAt])
+  @@index([status, createdAt])
+  @@map("backups")
 }

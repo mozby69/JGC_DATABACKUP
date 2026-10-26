@@ -56,7 +56,8 @@ export const ModelName = {
   UserRole: 'UserRole',
   Permission: 'Permission',
   RolePermission: 'RolePermission',
-  Branch: 'Branch'
+  Branch: 'Branch',
+  Backup: 'Backup'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -82,6 +83,7 @@ export const UserScalarFieldEnum = {
   email: 'email',
   password: 'password',
   isActive: 'isActive',
+  branchId: 'branchId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -145,6 +147,27 @@ export const BranchScalarFieldEnum = {
 export type BranchScalarFieldEnum = (typeof BranchScalarFieldEnum)[keyof typeof BranchScalarFieldEnum]
 
 
+export const BackupScalarFieldEnum = {
+  id: 'id',
+  backupNo: 'backupNo',
+  backupDate: 'backupDate',
+  subject: 'subject',
+  branchId: 'branchId',
+  userId: 'userId',
+  fileName: 'fileName',
+  remotePath: 'remotePath',
+  localPath: 'localPath',
+  fileSize: 'fileSize',
+  status: 'status',
+  errorMessage: 'errorMessage',
+  createdAt: 'createdAt',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt'
+} as const
+
+export type BackupScalarFieldEnum = (typeof BackupScalarFieldEnum)[keyof typeof BackupScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -197,4 +220,16 @@ export const BranchOrderByRelevanceFieldEnum = {
 } as const
 
 export type BranchOrderByRelevanceFieldEnum = (typeof BranchOrderByRelevanceFieldEnum)[keyof typeof BranchOrderByRelevanceFieldEnum]
+
+
+export const BackupOrderByRelevanceFieldEnum = {
+  backupNo: 'backupNo',
+  subject: 'subject',
+  fileName: 'fileName',
+  remotePath: 'remotePath',
+  localPath: 'localPath',
+  errorMessage: 'errorMessage'
+} as const
+
+export type BackupOrderByRelevanceFieldEnum = (typeof BackupOrderByRelevanceFieldEnum)[keyof typeof BackupOrderByRelevanceFieldEnum]
 

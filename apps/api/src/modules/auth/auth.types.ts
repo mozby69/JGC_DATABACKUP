@@ -1,4 +1,5 @@
 export interface AuthUser {
+    branchId: number | null;
     id: number;
     name: string;
     username: string;

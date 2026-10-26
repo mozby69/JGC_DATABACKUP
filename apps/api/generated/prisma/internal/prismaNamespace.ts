@@ -402,7 +402,8 @@ export const ModelName = {
   UserRole: 'UserRole',
   Permission: 'Permission',
   RolePermission: 'RolePermission',
-  Branch: 'Branch'
+  Branch: 'Branch',
+  Backup: 'Backup'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -418,7 +419,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "role" | "userRole" | "permission" | "rolePermission" | "branch"
+    modelProps: "user" | "role" | "userRole" | "permission" | "rolePermission" | "branch" | "backup"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -818,6 +819,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Backup: {
+      payload: Prisma.$BackupPayload<ExtArgs>
+      fields: Prisma.BackupFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BackupFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackupPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BackupFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackupPayload>
+        }
+        findFirst: {
+          args: Prisma.BackupFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackupPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BackupFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackupPayload>
+        }
+        findMany: {
+          args: Prisma.BackupFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackupPayload>[]
+        }
+        create: {
+          args: Prisma.BackupCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackupPayload>
+        }
+        createMany: {
+          args: Prisma.BackupCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.BackupDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackupPayload>
+        }
+        update: {
+          args: Prisma.BackupUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackupPayload>
+        }
+        deleteMany: {
+          args: Prisma.BackupDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BackupUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.BackupUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackupPayload>
+        }
+        aggregate: {
+          args: Prisma.BackupAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBackup>
+        }
+        groupBy: {
+          args: Prisma.BackupGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BackupGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BackupCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BackupCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -864,6 +931,7 @@ export const UserScalarFieldEnum = {
   email: 'email',
   password: 'password',
   isActive: 'isActive',
+  branchId: 'branchId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -927,6 +995,27 @@ export const BranchScalarFieldEnum = {
 export type BranchScalarFieldEnum = (typeof BranchScalarFieldEnum)[keyof typeof BranchScalarFieldEnum]
 
 
+export const BackupScalarFieldEnum = {
+  id: 'id',
+  backupNo: 'backupNo',
+  backupDate: 'backupDate',
+  subject: 'subject',
+  branchId: 'branchId',
+  userId: 'userId',
+  fileName: 'fileName',
+  remotePath: 'remotePath',
+  localPath: 'localPath',
+  fileSize: 'fileSize',
+  status: 'status',
+  errorMessage: 'errorMessage',
+  createdAt: 'createdAt',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt'
+} as const
+
+export type BackupScalarFieldEnum = (typeof BackupScalarFieldEnum)[keyof typeof BackupScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -981,6 +1070,18 @@ export const BranchOrderByRelevanceFieldEnum = {
 export type BranchOrderByRelevanceFieldEnum = (typeof BranchOrderByRelevanceFieldEnum)[keyof typeof BranchOrderByRelevanceFieldEnum]
 
 
+export const BackupOrderByRelevanceFieldEnum = {
+  backupNo: 'backupNo',
+  subject: 'subject',
+  fileName: 'fileName',
+  remotePath: 'remotePath',
+  localPath: 'localPath',
+  errorMessage: 'errorMessage'
+} as const
+
+export type BackupOrderByRelevanceFieldEnum = (typeof BackupOrderByRelevanceFieldEnum)[keyof typeof BackupOrderByRelevanceFieldEnum]
+
+
 
 /**
  * Field references
@@ -1012,6 +1113,20 @@ export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'BigInt'
+ */
+export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
+    
+
+
+/**
+ * Reference to a field of type 'BackupStatus'
+ */
+export type EnumBackupStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BackupStatus'>
     
 
 
@@ -1178,6 +1293,7 @@ export type GlobalOmitConfig = {
   permission?: Prisma.PermissionOmit
   rolePermission?: Prisma.RolePermissionOmit
   branch?: Prisma.BranchOmit
+  backup?: Prisma.BackupOmit
 }
 
 /* Types for Logging */

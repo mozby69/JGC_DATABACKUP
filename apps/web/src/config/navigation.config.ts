@@ -55,4 +55,10 @@ export const navigation: NavigationItem[] = [
         icon: DatabaseBackup,
         roles: ["SUPER_ADMIN"],
     },
+    {
+        title: "Add Backup",
+        href: ROUTES.BRANCH.ADDBACKUP, // temporary
+        icon: DatabaseBackup,
+        roles: ["BRANCH"],
+    },
 ];

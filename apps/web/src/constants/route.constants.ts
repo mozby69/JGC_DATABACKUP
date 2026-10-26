@@ -11,5 +11,8 @@ export const ROUTES = {
         DASHBOARD:"/superadmin/dashboard",
         BRANCHES: "/superadmin/branches",
         BACKUP: "/superadmin/backup",
-    }
+    },
+    BRANCH:{
+        ADDBACKUP: "/branch/addbackup"
+    },
 } as const;

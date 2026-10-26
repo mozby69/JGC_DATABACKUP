@@ -71,3 +71,8 @@ export type RolePermission = Prisma.RolePermissionModel
  * 
  */
 export type Branch = Prisma.BranchModel
+/**
+ * Model Backup
+ * 
+ */
+export type Backup = Prisma.BackupModel

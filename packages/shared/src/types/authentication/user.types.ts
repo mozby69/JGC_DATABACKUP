@@ -8,6 +8,7 @@ export interface User {
     isActive: boolean;
     roles: Role[];
     permissions: Permission[];
+    branchId?:number;
 }
 
 export interface LoginResponse {
@@ -22,6 +23,7 @@ export type AuthenticatedUser = {
     username: string;
     roles: string[];
     permissions: string[];
+    branchId?:number;
 };
 
 export type RoleName = Role["name"];

@@ -6,6 +6,7 @@ const authUserSelect = {
     username: true,
     password: true,
     isActive: true,
+    branchId:true,
 
     roles: {
         select: {
@@ -14,7 +15,7 @@ const authUserSelect = {
                     id: true,
                     name: true,
                     description: true,
-
+                    
                     permissions: {
                         select: {
                             permission: {
@@ -37,6 +38,7 @@ export async function findByIdWithRoles(userId: number) {
     return prisma.user.findUnique({
         where: {
             id: userId,
+            
         },
         select: authUserSelect,
     });

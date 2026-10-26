@@ -65,6 +65,12 @@ export function AuthProvider({
                 return;
             }
 
+            if (roles.includes("BRANCH")) {
+                router.replace("/branch/addbackup");
+                return;
+            }
+
+
             router.replace("/");
         },
         [queryClient, router]
