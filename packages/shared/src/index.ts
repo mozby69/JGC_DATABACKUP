@@ -1,5 +1,5 @@
 export * from "./schemas/index";
-export * from "./types/index";
+export * from "./types/";
 export * from "./constants/index";
 export * from "./utils/index";
 export * from "./socket/";

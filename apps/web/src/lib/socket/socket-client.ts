@@ -1,28 +1,34 @@
+
 import { io, type Socket } from "socket.io-client";
 
 import type {
-    ClientToServerEvents,
-    ServerToClientEvents,
+  ClientToServerEvents,
+  ServerToClientEvents,
 } from "@repo/shared";
 
-const SOCKET_URL =
-    process.env.NEXT_PUBLIC_BACKEND_LAN_URL;
+const SOCKET_URL = process.env.NEXT_PUBLIC_BACKEND_LAN_URL;
 
 let socket: Socket<
-    ServerToClientEvents,
-    ClientToServerEvents
+  ServerToClientEvents,
+  ClientToServerEvents
 > | null = null;
 
-export const createSocket = () => {
-    if (!socket) {
-        socket = io<
-            ServerToClientEvents,
-            ClientToServerEvents
-        >(SOCKET_URL!, {
-            autoConnect: true,
-            withCredentials: true,
-        });
+export const createSocket = (): Socket<
+  ServerToClientEvents,
+  ClientToServerEvents
+> => {
+  if (!socket) {
+    if (!SOCKET_URL) {
+      throw new Error(
+        "NEXT_PUBLIC_BACKEND_LAN_URL is not configured"
+      );
     }
 
-    return socket;
+    socket = io(SOCKET_URL, {
+      autoConnect: true,
+      withCredentials: true,
+    });
+  }
+
+  return socket;
 };

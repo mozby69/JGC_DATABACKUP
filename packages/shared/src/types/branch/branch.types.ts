@@ -23,7 +23,7 @@ export interface Backup {
   completedAt: string | null;
 }
 
-export interface CreateBackupInput {
+export interface CreateBackupInput2 {
   fileName: string;
   remotePath: string;
 }

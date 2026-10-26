@@ -29,19 +29,19 @@ export async function findAllUsers(
             {
                 name: {
                     contains: search,
-                    mode: "insensitive",
+                   // mode: "insensitive",
                 },
             },
             {
                 username: {
                     contains: search,
-                    mode: "insensitive",
+                  //  mode: "insensitive",
                 },
             },
             {
                 email: {
                     contains: search,
-                    mode: "insensitive",
+                   // mode: "insensitive",
                 },
             },
         ];

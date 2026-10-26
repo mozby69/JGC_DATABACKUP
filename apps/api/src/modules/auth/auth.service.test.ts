@@ -61,6 +61,7 @@ describe("loginUser", () => {
             password: "hashed-password",
             isActive: false,
             roles: [],
+
         });
 
         await expect(
@@ -87,6 +88,7 @@ describe("loginUser", () => {
             password: "hashed-password",
             isActive: true,
             roles: [],
+
         };
 
         vi.mocked(
@@ -149,6 +151,7 @@ describe("loginUser", () => {
             username: "john",
             roles: ["ADMIN"],
             permissions: ["users.read"],
+       
         };
 
         vi.mocked(

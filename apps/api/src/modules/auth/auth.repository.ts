@@ -6,7 +6,7 @@ const authUserSelect = {
     username: true,
     password: true,
     isActive: true,
-    branchId:true,
+
 
     roles: {
         select: {
