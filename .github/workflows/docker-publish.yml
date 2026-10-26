@@ -24,10 +24,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - image: ssp-web
+          - image: backup-web
             dockerfile: Dockerfile.web
 
-          - image: ssp-api
+          - image: backup-api
             dockerfile: Dockerfile.api
 
     steps:
